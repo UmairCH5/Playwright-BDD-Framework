@@ -1,0 +1,10 @@
+{
+  "validBooking": {
+    "firstname": "Umair",
+    "lastname": "Anwar",
+    "email": "umair.anwar@example.com",
+    "phone": "012345678901",
+    "checkin": "2026-11-15",
+    "checkout": "2026-11-17"
+  }
+}

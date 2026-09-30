@@ -1,0 +1,59 @@
+{
+  "name": "playwright-restful-booker-automation",
+  "version": "1.0.0",
+  "description": "Playwright TypeScript BDD Automation Framework",
+
+  "scripts": {
+    "bddgen": "bddgen",
+
+    "test": "bddgen && playwright test",
+
+    "test:dev": "cross-env ENV=dev npm run test",
+    "test:qa": "cross-env ENV=qa npm run test",
+    "test:stage": "cross-env ENV=stage npm run test",
+
+    "test:all-envs": "npm run test:dev && npm run test:qa && npm run test:stage",
+
+    "test:ui": "bddgen && playwright test --grep @ui",
+    "test:smoke": "bddgen && playwright test --grep @smoke",
+    "test:regression": "bddgen && playwright test --grep @regression",
+
+    "test:home": "bddgen && playwright test features/ui/home",
+    "test:booking": "bddgen && playwright test features/ui/home/booking.feature",
+    "test:contact": "bddgen && playwright test features/ui/contact",
+    "test:admin": "bddgen && playwright test features/ui/admin",
+
+    "test:headed": "bddgen && playwright test --headed",
+    "test:debug": "bddgen && playwright test --debug",
+
+    "test:feature": "bddgen && playwright test",
+
+    "test:dev:smoke": "cross-env ENV=dev npm run test:smoke",
+    "test:qa:smoke": "cross-env ENV=qa npm run test:smoke",
+    "test:stage:smoke": "cross-env ENV=stage npm run test:smoke",
+
+    "test:dev:regression": "cross-env ENV=dev npm run test:regression",
+    "test:qa:regression": "cross-env ENV=qa npm run test:regression",
+    "test:stage:regression": "cross-env ENV=stage npm run test:regression",
+
+    "report": "playwright show-report reports/playwright-html",
+
+    "type-check": "tsc --noEmit"
+  },
+
+  "type": "commonjs",
+
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^24.0.0",
+    "cross-env": "^10.0.0",
+    "eslint": "^9.0.0",
+    "playwright-bdd": "^9.2.1",
+    "prettier": "^3.0.0",
+    "typescript": "^7.0.2"
+  },
+
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

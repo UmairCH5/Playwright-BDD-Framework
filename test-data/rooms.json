@@ -1,0 +1,11 @@
+{
+  "single": {
+    "roomName": "101",
+    "type": "Single",
+    "accessible": true,
+    "description": "A cozy single room",
+    "image": "/images/room1.jpg",
+    "roomPrice": 100,
+    "features": ["TV", "WiFi", "Safe"]
+  }
+}

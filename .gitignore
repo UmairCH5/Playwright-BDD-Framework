@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.env
+env/.env.dev
+env/.env.qa
+env/.env.stage
+test-results/
+playwright-report/
+reports/playwright-html/
+.features-gen/
+.bdd-gen/
+.auth/
+*.log
+.DS_Store
+coverage/

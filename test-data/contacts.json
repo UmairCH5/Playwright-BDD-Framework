@@ -1,0 +1,9 @@
+{
+  "validContact": {
+    "name": "Umair Ch",
+    "email": "umair.ch@example.com",
+    "phone": "01234567890",
+    "subject": "Booking enquiry",
+    "description": "I want to know more about the hotel services"
+  }
+}
