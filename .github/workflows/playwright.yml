@@ -38,7 +38,6 @@ jobs:
       - name: Prettier check
         run: npm run format:check
 
-
   test:
     name: Playwright Tests
     needs: quality

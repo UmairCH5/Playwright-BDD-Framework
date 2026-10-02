@@ -7,12 +7,8 @@ export type AdminCredentials = {
 };
 
 export class AdminLoginPage extends BasePage {
-  readonly username: Locator = this.page.locator(
-    '#username, input[name="username"]',
-  );
-  readonly password: Locator = this.page.locator(
-    '#password, input[name="password"]',
-  );
+  readonly username: Locator = this.page.locator('#username, input[name="username"]');
+  readonly password: Locator = this.page.locator('#password, input[name="password"]');
   readonly loginButton: Locator = this.page.getByRole('button', {
     name: /^Login$/i,
   });
@@ -37,10 +33,7 @@ export class AdminLoginPage extends BasePage {
   async login(credentials: AdminCredentials): Promise<void> {
     await this.username.fill(credentials.username);
     await this.password.fill(credentials.password);
-    await Promise.all([
-      this.page.waitForURL(/\/admin\/rooms/),
-      this.loginButton.click(),
-    ]);
+    await Promise.all([this.page.waitForURL(/\/admin\/rooms/), this.loginButton.click()]);
   }
 
   async expectOnAdminRoomsPage(): Promise<void> {

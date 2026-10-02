@@ -39,16 +39,13 @@ export class BookingPage extends BasePage {
     name: /Booking Confirmed/i,
   });
 
-  readonly bookingConfirmationCard: Locator = this.page.locator(
-    '.booking-card',
-  );
+  readonly bookingConfirmationCard: Locator = this.page.locator('.booking-card');
 
   readonly confirmationMessage: Locator = this.bookingConfirmationCard.getByText(
     /Your booking has been confirmed for the following dates:/i,
   );
 
-  readonly confirmedDates: Locator =
-    this.bookingConfirmationCard.locator('strong');
+  readonly confirmedDates: Locator = this.bookingConfirmationCard.locator('strong');
 
   readonly returnHomeLink: Locator = this.page.getByRole('link', {
     name: /Return home/i,

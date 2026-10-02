@@ -14,33 +14,21 @@ function getContact(key: string): ContactDetails {
   return contact;
 }
 
-Given(
-  'User opens the Restful Booker contact page',
-  async ({ contactPage }) => {
-    await contactPage.openContactSection();
-  },
-);
+Given('User opens the Restful Booker contact page', async ({ contactPage }) => {
+  await contactPage.openContactSection();
+});
 
-Then(
-  'User should see the contact form',
-  async ({ contactPage }) => {
-    await contactPage.expectContactFormVisible();
-  },
-);
+Then('User should see the contact form', async ({ contactPage }) => {
+  await contactPage.expectContactFormVisible();
+});
 
-When(
-  'User fills the contact form from {string}',
-  async ({ contactPage }, contactKey: string) => {
-    await contactPage.fillContactForm(getContact(contactKey));
-  },
-);
+When('User fills the contact form from {string}', async ({ contactPage }, contactKey: string) => {
+  await contactPage.fillContactForm(getContact(contactKey));
+});
 
-When(
-  'User submits the contact form',
-  async ({ contactPage }) => {
-    await contactPage.submitContactForm();
-  },
-);
+When('User submits the contact form', async ({ contactPage }) => {
+  await contactPage.submitContactForm();
+});
 
 Then(
   'User should see the contact success message for {string}',

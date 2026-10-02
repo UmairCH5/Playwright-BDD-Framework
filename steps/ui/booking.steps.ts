@@ -43,92 +43,56 @@ function bookingForRun(key: string): BookingData {
   return booking;
 }
 
-Given(
-  'User opens the Restful Booker booking page',
-  async ({ bookingPage }) => {
-    await bookingPage.openBookingSection();
-  },
-);
+Given('User opens the Restful Booker booking page', async ({ bookingPage }) => {
+  await bookingPage.openBookingSection();
+});
 
-When(
-  'User enters booking dates from {string}',
-  async ({ bookingPage }, bookingKey: string) => {
-    const booking = bookingForRun(bookingKey);
-    await bookingPage.enterCheckInDate(DateUtils.toDisplayDate(booking.checkin));
-    await bookingPage.enterCheckOutDate(DateUtils.toDisplayDate(booking.checkout));
-  },
-);
+When('User enters booking dates from {string}', async ({ bookingPage }, bookingKey: string) => {
+  const booking = bookingForRun(bookingKey);
+  await bookingPage.enterCheckInDate(DateUtils.toDisplayDate(booking.checkin));
+  await bookingPage.enterCheckOutDate(DateUtils.toDisplayDate(booking.checkout));
+});
 
-When(
-  'User enters check in date {string}',
-  async ({ bookingPage }, date: string) => {
-    await bookingPage.enterCheckInDate(date);
-  },
-);
+When('User enters check in date {string}', async ({ bookingPage }, date: string) => {
+  await bookingPage.enterCheckInDate(date);
+});
 
-When(
-  'User enters check out date {string}',
-  async ({ bookingPage }, date: string) => {
-    await bookingPage.enterCheckOutDate(date);
-  },
-);
+When('User enters check out date {string}', async ({ bookingPage }, date: string) => {
+  await bookingPage.enterCheckOutDate(date);
+});
 
-When(
-  'User clicks check availability',
-  async ({ bookingPage }) => {
-    await bookingPage.checkAvailability();
-  },
-);
+When('User clicks check availability', async ({ bookingPage }) => {
+  await bookingPage.checkAvailability();
+});
 
-Then(
-  'User should be able to see available rooms',
-  async ({ bookingPage }) => {
-    await bookingPage.verifyAvailableRoomsDisplayed();
-  },
-);
+Then('User should be able to see available rooms', async ({ bookingPage }) => {
+  await bookingPage.verifyAvailableRoomsDisplayed();
+});
 
-When(
-  'User clicks the first Book now button',
-  async ({ bookingPage }) => {
-    await bookingPage.clickFirstBookNow();
-  },
-);
+When('User clicks the first Book now button', async ({ bookingPage }) => {
+  await bookingPage.clickFirstBookNow();
+});
 
-When(
-  'User clicks the Reserve Now button',
-  async ({ bookingPage }) => {
-    await bookingPage.clickReserve();
-  },
-);
+When('User clicks the Reserve Now button', async ({ bookingPage }) => {
+  await bookingPage.clickReserve();
+});
 
-When(
-  'User clicks the Reserve button',
-  async ({ bookingPage }) => {
-    await bookingPage.clickReserve();
-  },
-);
+When('User clicks the Reserve button', async ({ bookingPage }) => {
+  await bookingPage.clickReserve();
+});
 
-When(
-  'User fills the booking form from {string}',
-  async ({ bookingPage }, bookingKey: string) => {
-    const booking = bookingForRun(bookingKey);
-    await bookingPage.fillGuestDetails(booking);
-  },
-);
+When('User fills the booking form from {string}', async ({ bookingPage }, bookingKey: string) => {
+  const booking = bookingForRun(bookingKey);
+  await bookingPage.fillGuestDetails(booking);
+});
 
-When(
-  'User confirms the reservation',
-  async ({ bookingPage }) => {
-    await bookingPage.confirmReservation();
-  },
-);
+When('User confirms the reservation', async ({ bookingPage }) => {
+  await bookingPage.confirmReservation();
+});
 
-Then(
-  'User should see the booking confirmation',
-  async ({ bookingPage }) => {
-    await bookingPage.expectBookingConfirmed();
-  },
-);
+Then('User should see the booking confirmation', async ({ bookingPage }) => {
+  await bookingPage.expectBookingConfirmed();
+});
 
 Then(
   'User should see the confirmed dates from {string}',
@@ -138,11 +102,8 @@ Then(
   },
 );
 
-Then(
-  'User should see the return home link',
-  async ({ bookingPage }) => {
-    await bookingPage.expectReturnHomeLinkVisible();
-  },
-);
+Then('User should see the return home link', async ({ bookingPage }) => {
+  await bookingPage.expectReturnHomeLinkVisible();
+});
 
 export {};

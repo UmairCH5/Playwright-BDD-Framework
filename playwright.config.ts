@@ -19,10 +19,7 @@ export default defineConfig({
   retries: testConfig.retries,
   workers: testConfig.workers,
   outputDir: 'test-results',
-  reporter: [
-    ['list'],
-    ['html', { open: 'never', outputFolder: 'reports/playwright-html' }],
-  ],
+  reporter: [['list'], ['html', { open: 'never', outputFolder: 'reports/playwright-html' }]],
   use: {
     baseURL: envConfig.baseURL,
     trace: 'retain-on-failure',

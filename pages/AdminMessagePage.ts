@@ -5,9 +5,7 @@ export class AdminMessagePage extends BasePage {
   readonly messageRows: Locator = this.page.locator(
     '[data-testid^="message"]:not([data-testid*="Description"])',
   );
-  readonly messageDescriptions: Locator = this.page.locator(
-    '[data-testid^="messageDescription"]',
-  );
+  readonly messageDescriptions: Locator = this.page.locator('[data-testid^="messageDescription"]');
 
   async open(): Promise<void> {
     await this.goto('/admin/message');
@@ -22,8 +20,6 @@ export class AdminMessagePage extends BasePage {
 
   async expectMessageVisible(name: string, subject: string): Promise<void> {
     await expect(this.page.getByText(name, { exact: true }).first()).toBeVisible();
-    await expect(
-      this.page.getByText(subject, { exact: true }).first(),
-    ).toBeVisible();
+    await expect(this.page.getByText(subject, { exact: true }).first()).toBeVisible();
   }
 }

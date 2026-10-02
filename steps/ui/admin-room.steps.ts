@@ -30,36 +30,25 @@ function uniqueRoom(key: string): RoomDetails {
   return created;
 }
 
-When(
-  'User creates a room from {string}',
-  async ({ adminRoomPage }, roomKey: string) => {
-    const room = uniqueRoom(roomKey);
-    await adminRoomPage.createRoom(room);
-  },
-);
+When('User creates a room from {string}', async ({ adminRoomPage }, roomKey: string) => {
+  const room = uniqueRoom(roomKey);
+  await adminRoomPage.createRoom(room);
+});
 
-Then(
-  'User should see the admin room form',
-  async ({ adminRoomPage }) => {
-    await adminRoomPage.expectRoomFormVisible();
-  },
-);
+Then('User should see the admin room form', async ({ adminRoomPage }) => {
+  await adminRoomPage.expectRoomFormVisible();
+});
 
-Then(
-  'User should see rooms listed in the admin room list',
-  async ({ adminRoomPage }) => {
-    await adminRoomPage.expectRoomsListed();
-  },
-);
+Then('User should see rooms listed in the admin room list', async ({ adminRoomPage }) => {
+  await adminRoomPage.expectRoomsListed();
+});
 
 Then(
   'User should see the created room from {string} in the room list',
   async ({ adminRoomPage }, roomKey: string) => {
     const room = createdRooms.get(roomKey);
     if (!room) {
-      throw new Error(
-        `No created room found for "${roomKey}". Create the room before asserting.`,
-      );
+      throw new Error(`No created room found for "${roomKey}". Create the room before asserting.`);
     }
     await adminRoomPage.expectRoomListed(room);
   },
