@@ -38,7 +38,10 @@
 
     "report": "playwright show-report reports/playwright-html",
 
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+
+    "lint": "eslint .",
+    "format:check": "prettier --check ."
   },
 
   "type": "commonjs",
