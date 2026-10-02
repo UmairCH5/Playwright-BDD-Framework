@@ -23,9 +23,7 @@ export class HomePage extends BasePage {
   readonly roomsSection: Locator = this.page.locator('#rooms');
   readonly bookingSection: Locator = this.page.locator('#booking');
   readonly contactSection: Locator = this.page.locator('#contact');
-  readonly roomCards: Locator = this.page.locator(
-    '#rooms .card, #rooms [class*="room"]',
-  );
+  readonly roomCards: Locator = this.page.locator('#rooms .card, #rooms [class*="room"]');
   readonly bookNowButtons: Locator = this.page.getByRole('link', {
     name: /Book now/i,
   });

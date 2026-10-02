@@ -14,41 +14,26 @@ function getAdmin(key: string): AdminCredentials {
   return { username: user.username, password: user.password };
 }
 
-Given(
-  'User opens the admin login page',
-  async ({ adminLoginPage }) => {
-    await adminLoginPage.open();
-  },
-);
+Given('User opens the admin login page', async ({ adminLoginPage }) => {
+  await adminLoginPage.open();
+});
 
-Given(
-  'User is logged in as admin from {string}',
-  async ({ adminLoginPage }, userKey: string) => {
-    await adminLoginPage.open();
-    await adminLoginPage.login(getAdmin(userKey));
-    await adminLoginPage.expectOnAdminRoomsPage();
-  },
-);
+Given('User is logged in as admin from {string}', async ({ adminLoginPage }, userKey: string) => {
+  await adminLoginPage.open();
+  await adminLoginPage.login(getAdmin(userKey));
+  await adminLoginPage.expectOnAdminRoomsPage();
+});
 
-When(
-  'User logs in as admin from {string}',
-  async ({ adminLoginPage }, userKey: string) => {
-    await adminLoginPage.login(getAdmin(userKey));
-  },
-);
+When('User logs in as admin from {string}', async ({ adminLoginPage }, userKey: string) => {
+  await adminLoginPage.login(getAdmin(userKey));
+});
 
-Then(
-  'User should be on the admin rooms page',
-  async ({ adminLoginPage }) => {
-    await adminLoginPage.expectOnAdminRoomsPage();
-  },
-);
+Then('User should be on the admin rooms page', async ({ adminLoginPage }) => {
+  await adminLoginPage.expectOnAdminRoomsPage();
+});
 
-Then(
-  'User should see the admin navigation',
-  async ({ adminLoginPage }) => {
-    await adminLoginPage.expectAdminNavigationVisible();
-  },
-);
+Then('User should see the admin navigation', async ({ adminLoginPage }) => {
+  await adminLoginPage.expectAdminNavigationVisible();
+});
 
 export {};

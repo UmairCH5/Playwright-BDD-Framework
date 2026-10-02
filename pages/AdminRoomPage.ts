@@ -15,9 +15,7 @@ export class AdminRoomPage extends BasePage {
   readonly accessible: Locator = this.page.locator('#accessible');
   readonly roomPrice: Locator = this.page.locator('#roomPrice');
   readonly createRoomButton: Locator = this.page.locator('#createRoom');
-  readonly roomList: Locator = this.page.locator(
-    'div[data-testid="roomlisting"]',
-  );
+  readonly roomList: Locator = this.page.locator('div[data-testid="roomlisting"]');
 
   private readonly featureCheckboxIds: Record<string, string> = {
     WiFi: 'wifiCheckbox',
@@ -55,9 +53,7 @@ export class AdminRoomPage extends BasePage {
     }
 
     await this.createRoomButton.click();
-    await expect(
-      this.page.locator(`#roomName${room.roomName}`),
-    ).toBeVisible();
+    await expect(this.page.locator(`#roomName${room.roomName}`)).toBeVisible();
   }
 
   async expectRoomListed(room: RoomDetails): Promise<void> {
@@ -66,12 +62,10 @@ export class AdminRoomPage extends BasePage {
     );
     await expect(roomRow).toBeVisible();
     await expect(roomRow.locator(`#type${room.type}`)).toHaveText(room.type);
-    await expect(
-      roomRow.locator(`#accessible${String(room.accessible)}`),
-    ).toHaveText(String(room.accessible));
-    await expect(roomRow.locator(`#roomPrice${room.roomPrice}`)).toHaveText(
-      String(room.roomPrice),
+    await expect(roomRow.locator(`#accessible${String(room.accessible)}`)).toHaveText(
+      String(room.accessible),
     );
+    await expect(roomRow.locator(`#roomPrice${room.roomPrice}`)).toHaveText(String(room.roomPrice));
   }
 
   async expectRoomsListed(): Promise<void> {

@@ -1,21 +1,36 @@
-export default [
+const eslint = require('@eslint/js');
+const tseslint = require('typescript-eslint');
+
+module.exports = tseslint.config(
   {
     ignores: [
+      'eslint.config.js',
       'node_modules/**',
+      '.features-gen/**',
       'test-results/**',
       'reports/**',
-      '.features-gen/**',
       'playwright-report/**',
+      'coverage/**',
     ],
   },
+
+  eslint.configs.recommended,
+
+  ...tseslint.configs.recommended,
+
   {
-    files: ['**/*.{js,ts}'],
+    files: ['**/*.ts'],
+
     languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'commonjs',
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
     },
+
     rules: {
       'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn',
     },
   },
-];
+);

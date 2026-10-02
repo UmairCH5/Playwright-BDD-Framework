@@ -51,13 +51,9 @@ export class ContactPage extends BasePage {
 
   async expectSuccessMessage(contact: ContactDetails): Promise<void> {
     await expect(
-      this.contactSection.getByText(
-        new RegExp(`Thanks for getting in touch ${contact.name}`, 'i'),
-      ),
+      this.contactSection.getByText(new RegExp(`Thanks for getting in touch ${contact.name}`, 'i')),
     ).toBeVisible();
     await expect(this.contactSection.getByText(contact.subject)).toBeVisible();
-    await expect(
-      this.contactSection.getByText(/as soon as possible/i),
-    ).toBeVisible();
+    await expect(this.contactSection.getByText(/as soon as possible/i)).toBeVisible();
   }
 }
