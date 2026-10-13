@@ -3,10 +3,7 @@ import dotenv from 'dotenv';
 
 const envName = process.env.ENV || 'dev';
 
-const envFilePath = path.resolve(
-  process.cwd(),
-  `env/.env.${envName}`,
-);
+const envFilePath = path.resolve(process.cwd(), `env/.env.${envName}`);
 
 dotenv.config({
   path: envFilePath,
@@ -16,9 +13,7 @@ function requiredEnv(name: string): string {
   const value = process.env[name];
 
   if (!value) {
-    throw new Error(
-      `Missing required environment variable: ${name}`,
-    );
+    throw new Error(`Missing required environment variable: ${name}`);
   }
 
   return value;
