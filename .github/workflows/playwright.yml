@@ -44,6 +44,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
+    env:
+      ENV: dev
+      CI: true
+      BASE_URL: ${{ secrets.BASE_URL }}
+      ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -62,9 +69,6 @@ jobs:
 
       - name: Run all Playwright tests
         run: npm test
-        env:
-          ENV: dev
-          CI: true
 
       - name: Upload Playwright HTML report
         if: always()
