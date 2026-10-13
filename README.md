@@ -33,9 +33,9 @@ For QA and stage, copy the same template to `env/.env.qa` and `env/.env.stage`. 
 
 `config/envConfig.ts` loads `env/.env.<ENV>`, where `<ENV>` is the `ENV` variable (`dev`, `qa`, or `stage`).
 
-| Variable | Purpose |
-| --- | --- |
-| `BASE_URL` | Site under test. Used as Playwright `baseURL`. |
+| Variable         | Purpose                                               |
+| ---------------- | ----------------------------------------------------- |
+| `BASE_URL`       | Site under test. Used as Playwright `baseURL`.        |
 | `ADMIN_USERNAME` | Required admin username for the selected environment. |
 | `ADMIN_PASSWORD` | Required admin password for the selected environment. |
 
@@ -53,12 +53,12 @@ Select an environment with the matching npm script (`npm run test:dev`, `test:qa
 
 Scenario inputs live in JSON under `test-data/`. Steps look up a key such as `"validBooking"` or `"admin"`:
 
-| File | Used by |
-| --- | --- |
-| `test-data/users.json` | Admin login |
-| `test-data/bookings.json` | Guest booking |
-| `test-data/contacts.json` | Contact form |
-| `test-data/rooms.json` | Admin room creation |
+| File                      | Used by             |
+| ------------------------- | ------------------- |
+| `test-data/users.json`    | Admin login         |
+| `test-data/bookings.json` | Guest booking       |
+| `test-data/contacts.json` | Contact form        |
+| `test-data/rooms.json`    | Admin room creation |
 
 ### Timeouts, retries, and browser
 
