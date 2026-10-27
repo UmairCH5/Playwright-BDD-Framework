@@ -1,6 +1,6 @@
 import { Given, When, Then } from '../../fixtures/testFixture';
 import { FileUtils } from '../../utils/FileUtils';
-import type { AdminCredentials } from '../../pages/AdminLoginPage';
+import type { AdminCredentials } from '../../pages/ui/AdminLoginPage';
 
 type UsersFile = Record<string, AdminCredentials & { role?: string }>;
 

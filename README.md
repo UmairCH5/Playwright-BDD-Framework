@@ -2,7 +2,7 @@
 
 UI test framework for the [Restful Booker](https://automationintesting.online) hotel site (Shady Meadows B&B). Scenarios are written in Gherkin and run with [Playwright](https://playwright.dev) and [playwright-bdd](https://github.com/vitalets/playwright-bdd).
 
-The suite covers guest flows (home, booking, contact) and admin flows (login, rooms, bookings report, messages).
+The suite covers guest flows (home, booking, contact) and admin flows (login, rooms, bookings report, messages) in the UI, plus the underlying REST API (`/api/auth`, `/api/room`, `/api/booking`, `/api/message`, and `/api/branding`).
 
 ## Prerequisites
 
@@ -53,12 +53,12 @@ Select an environment with the matching npm script (`npm run test:dev`, `test:qa
 
 Scenario inputs live in JSON under `test-data/`. Steps look up a key such as `"validBooking"` or `"admin"`:
 
-| File                      | Used by             |
-| ------------------------- | ------------------- |
-| `test-data/users.json`    | Admin login         |
-| `test-data/bookings.json` | Guest booking       |
-| `test-data/contacts.json` | Contact form        |
-| `test-data/rooms.json`    | Admin room creation |
+| File                      | Used by                           |
+| ------------------------- | --------------------------------- |
+| `test-data/users.json`    | Admin login (UI)                  |
+| `test-data/bookings.json` | Guest booking (UI and API)        |
+| `test-data/contacts.json` | Contact form (UI) and message API |
+| `test-data/rooms.json`    | Admin room creation (UI and API)  |
 
 ### Timeouts, retries, and browser
 
@@ -83,14 +83,38 @@ npm run test:stage
 npm run test:all-envs
 ```
 
+## API coverage
+
+API scenarios live in `features/api/` and use typed API pages in `pages/api/` (one per resource, named `*ApiPage`) on top of Playwright's `request` fixture — no browser is launched. Page objects are split by convention: UI pages in `pages/ui/` (`*Page`) and API pages in `pages/api/` (`*ApiPage`). They reuse the same test data and environment config as the UI suite: `apiBaseURL` is derived from `BASE_URL` in `config/envConfig.ts`, and admin calls log in with `ADMIN_USERNAME` / `ADMIN_PASSWORD`. Authenticated endpoints expect the login token as a `token` cookie. Records a scenario creates (booking, room, message) are deleted again in fixture teardown.
+
+| Area     | Endpoints covered                                                            | Includes negative cases                         |
+| -------- | ---------------------------------------------------------------------------- | ----------------------------------------------- |
+| Auth     | `POST /api/auth/login`, `POST /api/auth/validate`                            | Invalid password returns `401`                  |
+| Branding | `GET /api/branding`                                                          | —                                               |
+| Room     | `GET /api/room`, `GET /api/room/{id}`, `POST /api/room`                      | Unauthenticated create returns `401`            |
+| Booking  | `POST /api/booking`, `GET /api/booking/{id}`, `GET /api/booking?roomid={id}` | Missing names `400`, unauthenticated read `403` |
+| Message  | `POST /api/message`, `GET /api/message`, `GET /api/message/{id}`             | Empty payload returns `400`                     |
+
+```bash
+# All API scenarios (any environment: test:dev:api, test:qa:api, test:stage:api)
+npm run test:api
+
+# One API area
+npm run test:auth
+npm run test:room
+npm run test:branding
+npm run test:message
+```
+
 ### By tag or area
 
-Feature tags are `@ui`, `@smoke`, `@regression`, `@home`, `@contact`, and `@admin`.
+Feature tags are `@ui`, `@api`, `@smoke`, `@regression`, `@home`, `@contact`, `@admin`, `@auth`, `@room`, `@booking`, `@message`, and `@branding`. `@smoke` and `@regression` span both UI and API scenarios.
 
 ```bash
 npm run test:smoke
 npm run test:regression
 npm run test:ui
+npm run test:api
 
 npm run test:home
 npm run test:booking
@@ -133,10 +157,13 @@ npm run report
 ## Project layout
 
 ```text
-features/ui/          Gherkin scenarios
-steps/ui/             Step definitions
-pages/                Page objects
-fixtures/             Playwright fixtures (pages wired into steps)
+features/ui/          Gherkin scenarios (UI)
+features/api/         Gherkin scenarios (API)
+steps/ui/             UI step definitions
+steps/api/            API step definitions
+pages/ui/             UI page objects (*Page)
+pages/api/            API pages (*ApiPage): typed REST clients for auth, room, booking, message, branding
+fixtures/             Playwright fixtures (UI and API pages wired into steps)
 test-data/            JSON data referenced by scenarios
 config/               Environment, timeouts, and constants
 playwright.config.ts  Playwright and playwright-bdd settings
