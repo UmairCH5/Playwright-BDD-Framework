@@ -19,9 +19,12 @@ function requiredEnv(name: string): string {
   return value;
 }
 
+const baseURL = requiredEnv('BASE_URL').replace(/\/$/, '');
+
 export const envConfig = {
   env: envName,
-  baseURL: requiredEnv('BASE_URL'),
+  baseURL,
+  apiBaseURL: `${baseURL}/api`,
   adminUsername: requiredEnv('ADMIN_USERNAME'),
   adminPassword: requiredEnv('ADMIN_PASSWORD'),
 };

@@ -1,5 +1,5 @@
 import { createBdd } from 'playwright-bdd';
-import { pageTest } from './pageFixture';
+import { apiTest } from './apiFixture';
 
-export const test = pageTest;
+export const test = apiTest;
 export const { Given, When, Then, Before, After } = createBdd(test);

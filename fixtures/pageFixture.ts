@@ -1,10 +1,10 @@
-import { HomePage } from '../pages/HomePage';
-import { BookingPage } from '../pages/BookingPage';
-import { ContactPage } from '../pages/ContactPage';
-import { AdminLoginPage } from '../pages/AdminLoginPage';
-import { AdminRoomPage } from '../pages/AdminRoomPage';
-import { AdminBookingPage } from '../pages/AdminBookingPage';
-import { AdminMessagePage } from '../pages/AdminMessagePage';
+import { HomePage } from '../pages/ui/HomePage';
+import { BookingPage } from '../pages/ui/BookingPage';
+import { ContactPage } from '../pages/ui/ContactPage';
+import { AdminLoginPage } from '../pages/ui/AdminLoginPage';
+import { AdminRoomPage } from '../pages/ui/AdminRoomPage';
+import { AdminBookingPage } from '../pages/ui/AdminBookingPage';
+import { AdminMessagePage } from '../pages/ui/AdminMessagePage';
 import { baseTest } from './baseFixture';
 
 export type PageFixtures = {

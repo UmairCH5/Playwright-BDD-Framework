@@ -1,6 +1,6 @@
 import { Given, When, Then } from '../../fixtures/testFixture';
 import { FileUtils } from '../../utils/FileUtils';
-import type { ContactDetails } from '../../pages/ContactPage';
+import type { ContactDetails } from '../../pages/ui/ContactPage';
 
 type ContactsFile = Record<string, ContactDetails>;
 

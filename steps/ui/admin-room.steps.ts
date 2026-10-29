@@ -1,6 +1,6 @@
 import { When, Then } from '../../fixtures/testFixture';
 import { FileUtils } from '../../utils/FileUtils';
-import type { RoomDetails } from '../../pages/AdminRoomPage';
+import type { RoomDetails } from '../../pages/ui/AdminRoomPage';
 
 type RoomsFile = Record<string, RoomDetails & { description?: string; image?: string }>;
 
